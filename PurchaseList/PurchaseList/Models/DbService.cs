@@ -49,5 +49,44 @@ namespace PurchaseList.Models
                 }
             }
         }
+
+        public static User GetUser(string email)
+        {
+            using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE Email=@mail", con))
+                {
+                    cmd.Parameters.AddWithValue("@mail", email);
+                    con.Open();
+
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        User u = new User();
+
+                        if (rdr.Read())
+                        {
+                            u.Name = rdr["Name"].ToString();
+                            u.Surname = rdr["Surname"].ToString();
+                            u.Age = Convert.ToInt32(rdr["Age"].ToString());
+                            u.Country = rdr["Country"].ToString();
+                            u.Email = rdr["Email"].ToString();
+                        }
+
+                        return u;
+                    }
+                }
+            }
+        }
+
+        public static bool SetOnlineUser(string email)
+        {
+            if (!UserExists(email))
+            {
+                throw new ArgumentNullException("User with this email does not exist");
+            }
+
+            AuthorizationContext.Identity = GetUser(email);
+            return true;
+        }
     }
 }

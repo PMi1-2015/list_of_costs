@@ -11,7 +11,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="label" FontWeight="Bold" FontSize="20" Content="MoneyKeeper" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" Width="165"/>
-        <Button x:Name="button" Content="Log In" HorizontalAlignment="Left" Margin="180,140,0,0" VerticalAlignment="Top" Width="140"/>
+        <Button x:Name="button" Content="Log In" HorizontalAlignment="Left" Margin="180,140,0,0" VerticalAlignment="Top" Width="140" Click="button_Click"/>
         <Button x:Name="button_Copy" Content="Register" HorizontalAlignment="Left" Margin="180,176,0,0" VerticalAlignment="Top" Width="140" Click="button_Copy_Click"/>
 
     </Grid>

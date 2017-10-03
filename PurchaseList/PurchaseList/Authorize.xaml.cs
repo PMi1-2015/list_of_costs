@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PurchaseList.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,31 +11,35 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PurchaseList
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Authorize.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Authorize : Window
     {
-        public MainWindow()
+        public Authorize()
         {
             InitializeComponent();
         }
 
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
-        {
-            Register r = new Register();
-            r.Show();
-        }
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Authorize auth = new Authorize();
-            auth.Show();
+            try
+            {
+                if (DbService.SetOnlineUser(textBox.Text))
+                {
+                    Dashboard d = new Dashboard();
+                    d.Show();
+                    this.Close();
+                }
+            }
+            catch (ArgumentNullException exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
     }
 }
