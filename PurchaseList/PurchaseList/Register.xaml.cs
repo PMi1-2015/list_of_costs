@@ -68,6 +68,10 @@ namespace PurchaseList
                     this.Close();
                 }
             }
+            catch(AccessViolationException)
+            {
+                this.QueryResult.Content = "User with this email algready exists";
+            }
             catch
             {
                 this.Foreground = new SolidColorBrush(Colors.Red);
