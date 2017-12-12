@@ -43,7 +43,7 @@
                 <DataGridTextColumn Header="Comment" Binding="{Binding Path=Comment}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <oxy:Plot Title="{Binding GraphTitle}" Margin="10,99,28.2,264" Background="#FF21242F" Foreground="{x:Null}" FontSize="18">
+        <oxy:Plot Title="{Binding GraphTitle}" Margin="10,99,28.2,264" Background="#FF21242F" Foreground="#FF0E0000" FontSize="18">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
             </oxy:Plot.Series>
